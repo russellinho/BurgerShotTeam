@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+<title>BurgerShot</title>
+<link href="./css/styles.css" rel="stylesheet" type="text/css"/>
+</h:head>
+<h:body>
+<h:form id="headerform" rendered="#{!userBean.admin}">
+<div align="center">
+	<h:commandLink value="Home" action="#{navigationController.goHome}" style="margin: 10px;" />
+	<h:commandLink value="Place an Order" action="#{navigationController.goToIndex}" style="margin: 10px;" />
+	<h:commandLink value="Order History" action="#{navigationController.goToOrderHistory}" style="margin: 10px;" />
+</div>
+</h:form>
+<h:form rendered="#{userBean.admin}">
+<div align="center">
+	<h:commandLink value="Home" action="#{navigationController.goHome}" style="margin: 10px;" />
+	<h:commandLink value="Account Directory" action="#{navigationController.goToAccountDirectory}" style="margin: 10px;" />
+	<h:commandLink value="View All Orders" action="#{navigationController.goToViewAllOrders}" style="margin: 10px;" />
+</div>
+</h:form>
+<h1 class="title">About Us</h1>
+
+<h:form>
+  <p>
+  	BurgerShot came to its inception in 1929 by Swaggy McSwaggerson. Ever since then, we have been making swagburgers
+  	in 420 different locations across the world. We believe strongly in diversity, so we have many different swagburger
+  	varieties to ensure that everyone has something to eat. BurgerShot believes in using the most natural, straight-
+  	from-the-earth, organic, non-GMO, gluten-free, preservative-free, sugar free, no trans-fat, no saturated fat,
+  	grass-fed ingredients because everyone likes hearing that stuff.<br/><br/>
+  	Today, we are happy to serve swagburgers to our customers that may or may not give them type 2 diabetes,
+  	high cholesterol, cardiac arrest, and/or death.
+  </p>
+  <div align="center">
+  	<h:graphicImage value="/img/founder.jpg" />
+  	<p><b>Mr. McSwaggerson in the flesh.</b></p>
+  </div>
+  <br/>
+  <hr/>
+  <p align="center">
+  <b>
+  Contact us: <br/>
+  Swaggy McSwaggerson Jr.<br/>
+  1337 Trapaholics Blvd<br/>
+  Swagland, SW 90210<br/>
+  Phone: (555) 123-4567<br/>
+  Email: ihavethemostswag@swagmail.com
+  </b>
+  </p>
+</h:form>
+
+</h:body></html>

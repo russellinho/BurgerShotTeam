@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+<title>BurgerShot</title>
+<link href="./css/styles.css" rel="stylesheet" type="text/css"/>
+</h:head>
+<h:body>
+<h:form rendered="#{!userBean.admin}">
+<div align="center">
+	<h:commandLink value="Home" action="#{navigationController.goHome}" style="margin: 10px;" />
+	<h:commandLink value="Place an Order" action="#{navigationController.goToIndex}" style="margin: 10px;" />
+	<h:commandLink value="About Us" action="#{navigationController.goToAboutUs}" style="margin: 10px;" />
+	<h:commandLink value="Order History" action="#{navigationController.goToOrderHistory}" style="margin: 10px;" />
+</div>
+</h:form>
+<h:form rendered="#{userBean.admin}">
+<div align="center">
+	<h:commandLink value="Home" action="#{navigationController.goHome}" style="margin: 10px;" />
+	<h:commandLink value="About Us" action="#{navigationController.goToAboutUs}" style="margin: 10px;" />
+	<h:commandLink value="View All Orders" action="#{navigationController.goToViewAllOrders}" style="margin: 10px;" />
+</div>
+</h:form>
+<h1 class="title">Account Directory</h1>
+
+<h:form rendered="#{userBean.admin}">
+<div align="center">
+  <p><b>Type in a username: </b></p>
+  <h:inputText value="#{userBean.searchQuery}" style="width: 300px;" autocomplete="off" >
+  	<f:ajax event="keyup" render="results" />
+  </h:inputText>
+  <br/>
+  <h:dataTable id="results" value="#{userBean.usersFound}" var="users" >
+  	<h:column>
+  		<f:facet name="header">Username</f:facet>
+  		<h:outputText value="#{users}" />
+  	</h:column>
+  	<h:column>
+  		<f:facet name="header">Details</f:facet>
+  		<h:commandButton id="detailsButton" value="View Details" action="#{userBean.proceedToUserPage}" >
+  			<f:param name="selectedUser" value="#{users}" />
+  		</h:commandButton>
+  	</h:column>
+  </h:dataTable>
+</div>
+</h:form>
+<h:form rendered="#{!userBean.admin}">
+<div align="center">
+	<p style="font-size:24px;"><b>You don't have sufficient privileges to access this page!</b></p>
+</div>
+</h:form>
+
+</h:body></html>

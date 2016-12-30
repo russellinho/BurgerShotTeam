@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+<title>BurgerShot</title>
+<link href="./css/styles.css" rel="stylesheet" type="text/css"/> 
+</h:head>
+<h:body>
+<h:form id="headerform">
+<div align="center">
+	<h:commandLink value="Home" action="#{navigationController.goHome}" style="margin: 10px;" />
+	<h:commandLink value="About Us" action="#{navigationController.goToAboutUs}" style="margin: 10px;" />
+	<h:commandLink value="Order History" action="#{navigationController.goToOrderHistory}" style="margin: 10px;" />
+</div>
+</h:form>
+<h1 class="title">Place an order</h1>
+<div align="center">
+<fieldset>
+<legend>Place an order:</legend>
+<h:form id="mainform" rendered="#{userBean.loggedIn}">
+	<h:dataTable value="#{orderBean.orderCategories}" var="order" >
+		<h:column>
+			<f:facet name="header">Meat</f:facet>
+			<ul style="list-style:none; padding: 0; margin: 0;" >
+				<li><h:selectBooleanCheckbox value="#{orderBean.quarter}" />Quarter Pounder</li>
+				<li><h:selectBooleanCheckbox value="#{orderBean.half}" />Half Pounder</li>
+				<li><h:selectBooleanCheckbox value="#{orderBean.doublePounder}" />Double Pounder</li>
+				<li><h:selectBooleanCheckbox value="#{orderBean.turkey}" />Turkey</li>
+				<li><h:selectBooleanCheckbox value="#{orderBean.chicken}" />Chicken</li>
+				<li><h:selectBooleanCheckbox value="#{orderBean.pulledPork}" />Pulled Pork</li>
+			</ul>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Toppings</f:facet>
+			<ul style="list-style:none; padding: 0; margin: 0;" >
+				<li><h:selectBooleanCheckbox value="#{orderBean.cheese}" />Cheese</li>
+				<li><h:selectBooleanCheckbox value="#{orderBean.tomato}" />Tomato</li>
+				<li><h:selectBooleanCheckbox value="#{orderBean.lettuce}" />Lettuce</li>
+				<li><h:selectBooleanCheckbox value="#{orderBean.onion}" />Onion</li>
+				<li><h:selectBooleanCheckbox value="#{orderBean.pickles}" />Pickles</li>
+				<li><h:selectBooleanCheckbox value="#{orderBean.carrots}" />Carrots</li>
+			</ul>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Sides</f:facet>
+			<ul style="list-style:none; padding: 0; margin: 0;" >
+				<li><h:selectBooleanCheckbox value="#{orderBean.fries}" />Fries</li>
+				<li><h:selectBooleanCheckbox value="#{orderBean.onionRings}" />Onion Rings</li>
+				<li><h:selectBooleanCheckbox value="#{orderBean.chickenNuggets}" />Chicken Nuggets</li>
+				<li><h:selectBooleanCheckbox value="#{orderBean.chips}" />Chips</li>
+				<li><h:selectBooleanCheckbox value="#{orderBean.celerySticks}" />Celery Sticks</li>
+			</ul>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Drinks</f:facet>
+			<ul style="list-style:none; padding: 0; margin: 0;" >
+				<li><h:selectBooleanCheckbox value="#{orderBean.fountainDrink}" />Soda</li>
+				<li><h:selectBooleanCheckbox value="#{orderBean.orangeJuice}" />Orange Juice</li>
+				<li><h:selectBooleanCheckbox value="#{orderBean.appleJuice}" />Apple Juice</li>
+				<li><h:selectBooleanCheckbox value="#{orderBean.cranberryJuice}" />Cranberry Juice</li>
+				<li><h:selectBooleanCheckbox value="#{orderBean.milk}" />Milk</li>
+				<li><h:selectBooleanCheckbox value="#{orderBean.water}" />Water</li>
+			</ul>
+		</h:column>
+	</h:dataTable>
+	<br/>
+	<h:message class="error" for="subbutton" />
+  <h:commandButton id="subbutton" value="Place order" action="#{orderBean.placeOrder}">
+  	<f:param name="username" value="#{userBean.username}" />
+  </h:commandButton>   
+</h:form>
+<h:form rendered="#{!userBean.loggedIn}">
+<p style="font-size:24px;"><b>You must be logged in to place an order. Please return to the Home page and log in.</b></p>
+</h:form>
+</fieldset>
+</div>
+
+</h:body></html>

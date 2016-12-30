@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+<title>BurgerShot</title>
+<link href="./css/styles.css" rel="stylesheet" type="text/css"/>
+</h:head>
+<h:body>
+<h:form id="headerform" rendered="#{!userBean.loggedIn}">
+<div align="center">
+	<h:commandLink value="Place an Order" action="#{navigationController.goToIndex}" style="margin: 10px;" />
+	<h:commandLink value="About Us" action="#{navigationController.goToAboutUs}" style="margin: 10px;" />
+	<h:commandLink value="Order History" action="#{navigationController.goToOrderHistory}" style="margin: 10px;" />
+</div>
+<div align="right">
+	<h:outputLabel value="Username: " style="font-weight:bold" />
+	<h:inputText value="#{userBean.username}" />
+	<br/>
+	<h:outputLabel value="Password: " style="font-weight:bold" />
+	<h:inputSecret value="#{userBean.password}" />
+	<br/>
+	<h:message class="error" for="loginbutton" />
+	<h:commandButton id="loginbutton" value="Login" style="font-weight:bold;" action="#{userBean.login}" />
+	<h:commandButton id="registerbutton" value="Register" style="font-weight:bold;" action="#{navigationController.goToRegister}" />
+</div>
+</h:form>
+<h:form rendered="#{userBean.loggedIn and !userBean.admin}">
+<div align="center">
+	<h:commandLink value="Place an Order" action="#{navigationController.goToIndex}" style="margin: 10px;" />
+	<h:commandLink value="About Us" action="#{navigationController.goToAboutUs}" style="margin: 10px;" />
+	<h:commandLink value="Order History" action="#{navigationController.goToOrderHistory}" style="margin: 10px;" />
+</div>
+<div align="right">
+	<p><b>Welcome, <h:outputText value="#{userBean.username}" />!</b></p>
+	<br/>
+	<h:commandButton id="logoutbutton" value="Logout" style="font-weight:bold;" action="#{userBean.logout}" />
+</div>
+</h:form>
+<h:form rendered="#{userBean.loggedIn and userBean.admin}">
+<div align="center">
+	<h:commandLink value="Account Directory" action="#{navigationController.goToAccountDirectory}" style="margin: 10px;" />
+	<h:commandLink value="About Us" action="#{navigationController.goToAboutUs}" style="margin: 10px;" />
+	<h:commandLink value="View All Orders" action="#{navigationController.goToViewAllOrders}" style="margin: 10px;" />
+</div>
+<div align="right">
+	<p><b>Welcome, <h:outputText value="#{userBean.username}" />!</b></p>
+	<br/>
+	<h:commandButton id="logoutbutton" value="Logout" style="font-weight:bold;" action="#{userBean.logout}" />
+</div>
+</h:form>
+<h1 class="title">Welcome to BurgerShot!</h1>
+
+<h:form>
+	<div align="center">
+  <h:graphicImage value="/img/homelogo.png" height="300" width="300" />
+  </div>
+</h:form>
+
+</h:body></html>
